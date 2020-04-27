@@ -1,17 +1,18 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include <iostream>
+#include <cstddef>
+#include <ostream>
 #include "queue.h"
 
 Node* topNode = NULL;
 Node* bottomNode = NULL;
+
 void queue() {
 	int data;
-	Node* temp;
-	temp = (Node*)malloc(sizeof(Node));
-
-	printf("Enter data to add to the queue: ");
-	scanf("%d", &data);
-
+	Node* temp = new Node;
+	
+	std::cout << "Enter data to add to the queue: ";
+	std::cin >> data;
+	
 	temp->data = data;
 	temp->next = topNode;
 
@@ -22,10 +23,8 @@ void queue() {
 	}
 	else {
 		topNode = temp;
-		temp->next->previous = topNode;	
+		temp->next->previous = topNode;
 	}
-
-	
 
 }
 
@@ -35,25 +34,27 @@ void dequeue() {
 	if (topNode != bottomNode) {
 		bottomNode = bottomNode->previous;
 		bottomNode->next = NULL;
-		free(temp);
+		delete temp;
 	}
 	else {
 		bottomNode = NULL;
 		topNode = NULL;
-		free(temp);
+		delete temp;
 	}
 }
 
-void peek(){
-	printf("Data at the front of the queue is: %i\n", bottomNode->data);
+void peek() {
+	std::cout << "Data at the front of the queue is: " << bottomNode->data << std::endl;
 }
 
-void displayQueue(){
+void displayQueue() {
 	Node* temp;
 	temp = topNode;
 
 	while (temp != NULL) {
-		printf("%i\n", temp->data);
+		std::cout << temp->data << std::endl;
 		temp = temp->next;
 	}
 }
+
+
