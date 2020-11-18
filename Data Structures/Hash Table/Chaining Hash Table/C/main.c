@@ -3,7 +3,6 @@
 
 
 int main() {
-
-    
+    Node newNode;
     return 0;  
 }

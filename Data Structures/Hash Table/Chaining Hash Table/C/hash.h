@@ -3,12 +3,14 @@
 
 
 typedef struct Node {
-    char 
+    char* key;
+    char* value;
 } Node;
 
 typedef struct HashTable {
-    unsigned int size;
+    Node** Node;
+    int size;
+    int count;
 } HashTable;
-
 
 #endif
