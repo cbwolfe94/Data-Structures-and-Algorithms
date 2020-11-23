@@ -13,4 +13,12 @@ typedef struct HashTable {
     int count;
 } HashTable;
 
+
+Node* createHashTableNode(char* key, char* value);
+
+
+
+
+
+HashTable* createHashTable(int size);
 #endif
