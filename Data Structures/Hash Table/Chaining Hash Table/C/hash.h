@@ -2,23 +2,25 @@
 #define HASH_H
 
 
-typedef struct Node {
+typedef struct HashTableItem {
     char* key;
     char* value;
-} Node;
+} HashTableItem;
 
 typedef struct HashTable {
-    Node** Node;
+    HashTableItem** items;
     int size;
     int count;
 } HashTable;
 
 
-Node* createHashTableNode(char* key, char* value);
 
-
-
-
+HashTableItem* createHashTableNode(char* key, char* value);
 
 HashTable* createHashTable(int size);
+
+void freeItem(HashTableItem* item);
+
+void freeHashTable(HashTable** table);
+
 #endif

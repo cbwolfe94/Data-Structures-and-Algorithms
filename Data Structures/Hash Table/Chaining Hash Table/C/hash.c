@@ -1,18 +1,44 @@
 #include "hash.h"
+#include <stddef.h>
 
-
-Node* createHashTableNode(char* key, char* value) {
+HashTableItem* createHashTableItem(char* key, char* value) {
     //allocate memory for node and node members
-    Node* node = (char*)malloc(sizeof(Node));
-    node->key = (char*)malloc(sizeof(strlen(key) + 1));
-    node->value = (char*)malloc(sizeof(strlen(value) + 1));
+    HashTableItem* item = (char*)malloc(sizeof(HashTableItem));
+    item->key = (char*)malloc(sizeof(strlen(key) + 1));
+    item->value = (char*)malloc(sizeof(strlen(value) + 1));
     //copy parameters into members of node
-    strcpy(node->key, key);
-    strcpy(node->value, value);
+    strcpy(item->key, key);
+    strcpy(item->value, value);
 
-    return node;   
+    return item;   
 }
 HashTable* createHashTable(int size){
-    HashTable* table = (HashTable*)(malloc(sizeof(HashTable));
+    HashTable* table = (HashTable*)malloc(sizeof(HashTable));
+    table->size = size;
+    table->count = 0;
+    //Create an array of node pointers and initialize them to 0 with calloc
+    table->items = (HashTableItem**)calloc(sizeof(HashTableItem*));
+    for (int i = 0; i < table->size; i++) {
+        table->items[i] = NULL;
+    }
     return table;
+}
+
+void freeItem(HashTableItem* item) {
+    //Deallocate the memory allocated earlier, deallocate Node members, then deallocate the address associated with Node
+    free(item->key);
+    free(item->value);
+    free(item);
+}
+
+void freeHashTable(HashTable* table) {
+    //Create a temporary item variable, to allow the 
+    for (int i = 0; i < table->size; i++) {
+        HashTableItem* item = table->items[i];
+        if (item != NULL) {
+            free(item);
+        }
+    }
+    free(table->items);
+    free(table);
 }
