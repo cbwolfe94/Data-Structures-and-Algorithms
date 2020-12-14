@@ -15,12 +15,15 @@ typedef struct HashTable {
 
 
 
-HashTableItem* createHashTableNode(char* key, char* value);
+HashTableItem* createHashTableItem(char* key, char* value);
 
 HashTable* createHashTable(int size);
 
 void freeItem(HashTableItem* item);
 
 void freeHashTable(HashTable** table);
+
+void insertHashTable(HashTable* table, char* key, char* value);
+
 
 #endif

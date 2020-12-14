@@ -3,6 +3,6 @@
 
 
 int main() {
-    Node newNode;
+    HashTableItem newNode;
     return 0;  
 }
