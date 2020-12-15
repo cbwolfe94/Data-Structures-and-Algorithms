@@ -1,6 +1,12 @@
 #include "hash.h"
 #include <stddef.h>
 
+
+unsigned long hashFunction(char* str) {
+    unsigned long i = 0;
+
+    for (int j = 0; j )
+}
 HashTableItem* createHashTableItem(char* key, char* value) {
     //allocate memory for node and node members
     HashTableItem* item = (char*)malloc(sizeof(HashTableItem));
@@ -41,4 +47,10 @@ void freeHashTable(HashTable* table) {
     }
     free(table->items);
     free(table);
+}
+
+void insertHashTable(HashTable* table, char* key, char* value) {
+    HashTableItem* item = createHashTableItem(key, value);
+
+
 }

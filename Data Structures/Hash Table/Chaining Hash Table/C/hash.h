@@ -14,6 +14,7 @@ typedef struct HashTable {
 } HashTable;
 
 
+unsigned long hashFunction(char* str);
 
 HashTableItem* createHashTableItem(char* key, char* value);
 
