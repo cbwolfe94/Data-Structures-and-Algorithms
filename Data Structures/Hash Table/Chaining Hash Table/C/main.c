@@ -1,8 +1,9 @@
 #include "hash.h"
-
+#define CAPACITY 50000
 
 
 int main() {
-    HashTableItem newNode;
+    HashTable* table(CAPACITY);
+
     return 0;  
 }
