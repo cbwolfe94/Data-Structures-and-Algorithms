@@ -18,10 +18,10 @@ unsigned long hashFunction(char* str, HashTable* table) {
 
 HashTableItem* createHashTableItem(char* key, char* value) {
     //allocate memory for hashTableItem
-    HashTableItem* item = (HashTableItem*)malloc(sizeof(HashTableItem));
+    HashTableItem* item = malloc(sizeof(HashTableItem));
     //allocate memory for hashTableItem members
-    item->key = (char*)malloc(sizeof(strlen(key) + 1));
-    item->value = (char*)malloc(sizeof(strlen(value) + 1));
+    item->key = (char*)malloc(sizeof(char*) * 100);
+    item->value = (char*)malloc(sizeof(char*) * 100);
     //copy parameters into members of node
     strcpy(item->key, key);
     strcpy(item->value, value);
@@ -30,7 +30,7 @@ HashTableItem* createHashTableItem(char* key, char* value) {
 }
 HashTable* createHashTable(int size){
     //Allocate memory for hash table
-    HashTable* table = (HashTable*)malloc(sizeof(HashTable));
+    HashTable* table = malloc(sizeof(HashTable));
     table->size = size;
     table->count = 0;
     //Create an array of HashTableItem pointers and initialize them to 0 with calloc
@@ -124,12 +124,12 @@ void printSearchValue(HashTable* table, char* key) {
         printf("Key %s does not exist in the table\n", key);
     }
     else {
-        printf("Key: %s, Value: %s", key, value);
+        printf("Key: %s, Value: %s\n", key, value);
     }
 }
 
 void printHashTable(HashTable* table) {
-    printf("------HASH TABLE------"); 
+    printf("------HASH TABLE------\n"); 
 
     for (int i= 0; i < table->size; i++) {
         if (table->items[i]) {
@@ -137,5 +137,5 @@ void printHashTable(HashTable* table) {
         }
     }
 
-    printf("----------------------\n\n");
+    printf("----------------------\n");
 }
