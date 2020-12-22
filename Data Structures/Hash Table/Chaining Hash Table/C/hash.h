@@ -2,17 +2,11 @@
 #define HASH_H
 
 
-typedef struct HashTableItem {
-    char* key;
-    char* value;
-} HashTableItem;
+typedef struct HashTableItem HashTableItem;
 
-typedef struct HashTable {
-    HashTableItem** items;
-    int size;
-    int count;
-} HashTable;
+typedef struct HashTable HashTable;
 
+typedef struct Node Node;
 
 unsigned long hashFunction(char* str, HashTable* table);
 
@@ -33,5 +27,7 @@ char* hashTableSearch(HashTable* table, char* key);
 void printSearchValue(HashTable* table, char* key);
 
 void printHashTable(HashTable* table);
+
+Node* createNode();
 
 #endif

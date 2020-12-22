@@ -4,6 +4,21 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct HashTableItem {
+    char* key;
+    char* value;
+};
+
+struct HashTable {
+    HashTableItem** items;
+    int size;
+    int count;
+};
+
+struct Node{
+    HashTableItem* item;
+    Node* next;
+};
 
 unsigned long hashFunction(char* str, HashTable* table) {
     unsigned long i = 0;
@@ -20,14 +35,15 @@ HashTableItem* createHashTableItem(char* key, char* value) {
     //allocate memory for hashTableItem
     HashTableItem* item = malloc(sizeof(HashTableItem));
     //allocate memory for hashTableItem members
-    item->key = (char*)malloc(sizeof(char*) * 100);
-    item->value = (char*)malloc(sizeof(char*) * 100);
+    item->key = (char*)malloc(strlen(key) + 1);
+    item->value = (char*)malloc(strlen(value) + 1);
     //copy parameters into members of node
     strcpy(item->key, key);
     strcpy(item->value, value);
 
     return item;   
 }
+
 HashTable* createHashTable(int size){
     //Allocate memory for hash table
     HashTable* table = malloc(sizeof(HashTable));
@@ -138,4 +154,44 @@ void printHashTable(HashTable* table) {
     }
 
     printf("----------------------\n");
+}
+
+Node* createNode() {
+    Node* node = (Node*)malloc(sizeof(Node));
+    return node;
+}
+
+Node* linkedListInsert(Node* list, HashTableItem* item) {
+
+    //Create a list if list has not been created yet
+    if(!list) {
+        Node* headNode = createNode();
+        headNode->item = item;
+        headNode->next = NULL;
+        list = headNode;
+        return list;
+    }
+
+    //If a list exists, and only a single node exists, then add a new node
+    else if (list->next == NULL) {
+        Node* node = createNode();
+        node->item = item;
+        node->next = NULL;
+        list->next = node;
+        return list;
+    }
+
+    Node* tempNode = list;
+    
+    //Traverse the linked list until the address of the next node is NULL
+    while(tempNode->next->next) {
+        tempNode = tempNode->next;
+    }
+
+    //Add new node to the end of the linked list
+    Node* node = createNode();
+    node->item = item;
+    node->next = NULL;
+    tempNode->next = node;
+    return list;
 }
