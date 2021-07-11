@@ -1,32 +1,34 @@
 #include "quick.h"
 
-
-void swap(int* firstNumber, int* secondNumber) {
-	int temp = *firstNumber;
-	*firstNumber = *secondNumber;
-	*secondNumber = temp;
+void quick_sort(int *unsorted_array, long low, long high)
+{
+	if(low < high){
+		int partition_index = partition(unsorted_array, low, high);
+		
+		quick_sort(unsorted_array, low, partition_index - 1);
+		quick_sort(unsorted_array, partition_index + 1, high);
+	}
 }
 
-int partition(int* unsortedArray, long low, long high) {
-	int pivot = unsortedArray[high];
-	int smallerElementIndex = low - 1;
+void swap(int *first_num, int *second_num)
+{
+	int temp = *first_num;
+	*first_num = *second_num;
+	*second_num = temp;
+}
 
-	for (int index = low; index <= high - 1; index++) {
-		if (unsortedArray[index] < pivot) {
-			smallerElementIndex++;
-			swap(&unsortedArray[smallerElementIndex], &unsortedArray[index]);
+int partition(int *unsorted_array, long low, long high)
+{
+	int pivot = unsorted_array[high];
+	int smaller_element_index = low - 1;
+
+	for (int i = low; i <= high - 1; i++) {
+		if (unsorted_array[i] < pivot) {
+			smaller_element_index++;
+			swap(&unsorted_array[smaller_element_index], &unsorted_array[i]);
 		}
 	}
-	swap(&unsortedArray[smallerElementIndex + 1], &unsortedArray[high]);
-	return smallerElementIndex + 1;
+	swap(&unsorted_array[smaller_element_index + 1], &unsorted_array[high]);
+	return smaller_element_index + 1;
 		
 }
-
-void quickSort(int* unsortedArray, long low, long high) {
-	if(low < high){
-		int partitionIndex = partition(unsortedArray, low, high);
-		quickSort(unsortedArray, low, partitionIndex - 1);
-		quickSort(unsortedArray, partitionIndex + 1, high);
-	}
-}
-

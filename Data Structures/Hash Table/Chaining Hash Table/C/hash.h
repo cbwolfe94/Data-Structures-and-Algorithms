@@ -1,33 +1,50 @@
 #ifndef HASH_H
 #define HASH_H
 
+typedef struct {
+    char* key;
+    char* value;
+} Hash_Table_Item_t;
 
-typedef struct HashTableItem HashTableItem;
+typedef struct {
+    struct HashTableItem **items;
+    //For collision handling
+    struct Node **overflowBuckets;
+    int size;
+    int count;
+} Hash_Table_t;
 
-typedef struct HashTable HashTable;
+typedef struct {
+    struct HashTableItem *item;
+    struct Node *next;
+} Node_t;
 
-typedef struct Node Node;
+Hash_Table_Item_t *item_create(char *key, char *value);
 
-unsigned long hashFunction(char* str, HashTable* table);
+void item_free(Hash_Table_Item_t *item);
 
-HashTableItem* createHashTableItem(char* key, char* value);
+Hash_Table_t *hash_table_create(int size);
 
-HashTable* createHashTable(int size);
+void hash_table_insert(Hash_Table_t *table, char *key, char *value);
 
-void freeItem(HashTableItem* item);
+char *hash_table_search(Hash_Table_t *table, char *key);
 
-void freeHashTable(HashTable* table);
+void hash_table_print(Hash_Table_t *table);
 
-void insertHashTable(HashTable* table, char* key, char* value);
+void hash_table_free(Hash_Table_t *table);
+
+unsigned long hash_function(char *str, Hash_Table_t *table);
 
 //void handleCollision();
 
-char* hashTableSearch(HashTable* table, char* key);
+void search_value_print(Hash_Table_t *table, char *key);
 
-void printSearchValue(HashTable* table, char* key);
+Node_t *node_create();
 
-void printHashTable(HashTable* table);
+Node_t *linked_list_insert(Node_t *list, Hash_Table_Item_t *item);
 
-Node* createNode();
+void node_remove(Node_t *list);
+
+void linked_list_free(Node_t *list);
 
 #endif

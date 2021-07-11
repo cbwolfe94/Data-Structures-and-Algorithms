@@ -2,13 +2,13 @@
 #include <stdio.h>
 #include "linkedlist.h"
 
-void traverseLinkedList(Node* node) {
+void linked_list_traverse(struct Node_t *node) {
 	if (node == NULL) {
 		return;
 	}
 
 	else {
 		printf("%i ", node->data);
-		traverseLinkedList(node->next);
+		linked_list_traverse(node->next);
 	}
 }

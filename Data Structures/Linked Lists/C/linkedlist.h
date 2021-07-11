@@ -1,11 +1,11 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
-typedef struct Node {
+struct Node_t {
 	int data;
 	struct Node* next;
-}Node;
+};
 
-void traverseLinkedList(Node*);
+void linked_list_traverse(struct Node_t *node);
 
 #endif

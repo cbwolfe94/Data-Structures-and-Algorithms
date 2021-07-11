@@ -1,19 +1,22 @@
 #include <stdio.h>
 #include "insertion.h"
 
-void sortArray(int* unsortedArray, long sizeOfArray){
-	int decrement, element, index;
-	for (index = 1; index < sizeOfArray; index++){
-		element = unsortedArray[index];
-		decrement = index - 1;
-		while (decrement >= 0 && unsortedArray[decrement] > element){
-			unsortedArray[decrement + 1] = unsortedArray[decrement];
+void insertion_sort(int *unsorted_array, long size_of_array)
+{
+	int decrement, element;
+
+	for (int i = 1; i < size_of_array; i++){
+		element = unsorted_array[i];
+		decrement = i - 1;
+		while (decrement >= 0 && unsorted_array[decrement] > element){
+			unsorted_array[decrement + 1] = unsorted_array[decrement];
 			decrement--;
 		}
-		unsortedArray[decrement + 1] = element;
+		unsorted_array[decrement + 1] = element;
 	}
-	for (int index = 0; index < sizeOfArray; index++){
-		printf("%i ", unsortedArray[index]);
+
+	for (int i = 0; i < size_of_array; i++){
+		printf("%i ", unsorted_array[i]);
 	}
 }
 

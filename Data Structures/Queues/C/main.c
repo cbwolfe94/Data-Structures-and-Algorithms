@@ -2,8 +2,10 @@
 #include <stdio.h>
 #include "queue.h"
 
-int main() {
+int main()
+{
 	int choice;
+
 	while (1) {
 		printf("Enter 1 for queue, 2 for dequeue, 3 for peek, 4 for traverse and dsiplay queue, or 5 for exit. ");
 		scanf("%d", &choice);
@@ -29,4 +31,5 @@ int main() {
 				exit(0);
 		}
 	}
+	return 0;
 }

@@ -1,11 +1,10 @@
 #ifndef STACK_H
 #define STACK_H
 
-typedef struct Node {
+typedef struct {
 	int data;
-	struct Node* next;
-} Node;
-
+	Node_t *next;
+} Node_t;
 
 void push();
 

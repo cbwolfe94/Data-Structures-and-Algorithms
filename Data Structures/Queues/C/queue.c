@@ -2,55 +2,58 @@
 #include <stdio.h>
 #include "queue.h"
 
-Node* topNode = NULL;
-Node* bottomNode = NULL;
-void queue() {
+Node_t *top_node = NULL;
+Node_t *bottom_node = NULL;
+
+void queue()
+{
 	int data;
-	Node* temp;
-	temp = (Node*)malloc(sizeof(Node));
+	Node_t *temp;
+	temp = (Node_t*)malloc(sizeof(Node_t));
 
 	printf("Enter data to add to the queue: ");
 	scanf("%d", &data);
 
 	temp->data = data;
-	temp->next = topNode;
+	temp->next = top_node;
 
-	if (topNode == NULL) {
-		bottomNode = temp;
-		topNode = temp;
+	if (top_node == NULL) {
+		bottom_node = temp;
+		top_node = temp;
 		temp->previous = NULL;
 	}
 	else {
-		topNode = temp;
-		temp->next->previous = topNode;	
+		top_node = temp;
+		temp->next->previous = top_node;	
 	}
-
-	
-
 }
 
-void dequeue() {
-	Node* temp;
-	temp = bottomNode;
-	if (topNode != bottomNode) {
-		bottomNode = bottomNode->previous;
-		bottomNode->next = NULL;
+void dequeue()
+{
+	Node_t *temp;
+	temp = bottom_node;
+
+	if (top_node != bottom_node) {
+		bottom_node = bottom_node->previous;
+		bottom_node->next = NULL;
 		free(temp);
 	}
 	else {
-		bottomNode = NULL;
-		topNode = NULL;
+		bottom_node = NULL;
+		top_node = NULL;
 		free(temp);
 	}
 }
 
-void peek(){
-	printf("Data at the front of the queue is: %i\n", bottomNode->data);
+void peek()
+{
+	printf("Data at the front of the queue is: %i\n", bottom_node->data);
 }
 
-void displayQueue(){
-	Node* temp;
-	temp = topNode;
+void queue_display()
+{
+	Node_t *temp;
+	temp = top_node;
 
 	while (temp != NULL) {
 		printf("%i\n", temp->data);

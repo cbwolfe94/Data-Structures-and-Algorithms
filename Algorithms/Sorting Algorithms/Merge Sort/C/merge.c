@@ -1,51 +1,52 @@
 #include "merge.h"
 
-void mergeSort(int* unsortedArray, long start, long end){
+void merge_sort(int *unsorted_array, long start, long end){
 	if (start < end){
 		int middle = start + (end - start)/2;
-		mergeSort(unsortedArray, start, middle);
-		mergeSort(unsortedArray, middle + 1, end);
-		merge(unsortedArray, start, middle, end);
+		
+		merge_sort(unsorted_array, start, middle);
+		merge_sort(unsorted_array, middle + 1, end);
+		merge(unsorted_array, start, middle, end);
 	}
 }
 
-void merge(int* unsortedArray, long start, long middle, long end){
-	int leftIndex, rightIndex, mainIndex;
-	long leftArraySize = middle - start + 1;
-	long rightArraySize = end - middle;
+void merge(int* unsorted_array, long start, long middle, long end)
+{
+	int left_index, right_index, main_index;
+	long left_array_size = middle - start + 1;
+	long right_array_size = end - middle;
+	int left_array[left_array_size], right_array[right_array_size];
 
-	int leftArray[leftArraySize], rightArray[rightArraySize];
-
-	for (leftIndex = 0; leftIndex < leftArraySize; leftIndex++){
-		leftArray[leftIndex] = unsortedArray[start + leftIndex];
+	for (left_index = 0; left_index < left_array_size; left_index++){
+		left_array[left_index] = unsorted_array[start + left_index];
 	}
-	for (int rightIndex = 0; rightIndex < rightArraySize; rightIndex++){
-		rightArray[rightIndex] = unsortedArray[middle + rightIndex + 1];
+	for (int right_index = 0; right_index < right_array_size; right_index++){
+		right_array[right_index] = unsorted_array[middle + right_index + 1];
 	}
 	
-	leftIndex = 0;
-	rightIndex = 0;
-	mainIndex = start;
+	left_index = 0;
+	right_index = 0;
+	main_index = start;
 
-	while (leftIndex < leftArraySize && rightIndex < rightArraySize){
-		if (leftArray[leftIndex] <= rightArray[rightIndex]){
-			unsortedArray[mainIndex] = leftArray[leftIndex];
-			leftIndex++;
+	while (left_index < left_array_size && right_index < right_array_size){
+		if (left_array[left_index] <= right_array[right_index]){
+			unsorted_array[main_index] = left_array[left_index];
+			left_index++;
 		}
 		else {
-			unsortedArray[mainIndex] = rightArray[rightIndex];
-			rightIndex++;
+			unsorted_array[main_index] = right_array[right_index];
+			right_index++;
 		}
-		mainIndex++;
+		main_index++;
 	}
-	while (leftIndex < leftArraySize){
-		unsortedArray[mainIndex] = leftArray[leftIndex];
-		leftIndex++;
-		mainIndex++;
+	while (left_index < left_array_size){
+		unsorted_array[main_index] = left_array[left_index];
+		left_index++;
+		main_index++;
 	}
-	while (rightIndex < rightArraySize){
-		unsortedArray[mainIndex] = rightArray[rightIndex];
-		rightIndex++;
-		mainIndex++;
+	while (right_index < right_array_size){
+		unsorted_array[main_index] = right_array[right_index];
+		right_index++;
+		main_index++;
 	}
 }

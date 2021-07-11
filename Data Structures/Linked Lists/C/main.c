@@ -3,15 +3,15 @@
 #include "linkedlist.h"
 
 int main(){
-	Node* head = NULL;
-	Node* second = NULL;
-	Node* third = NULL;
-	Node* fourth = NULL;
+	struct Node_t *head = NULL;
+	struct Node_t *second = NULL;
+	struct Node_t *third = NULL;
+	struct Node_t *fourth = NULL;
 
-	head = (Node*)malloc(sizeof(Node));
-	second = (Node*)malloc(sizeof(Node));
-	third = (Node*)malloc(sizeof(Node));
-	fourth = (Node*)malloc(sizeof(Node));
+	head = (struct Node_t*)malloc(sizeof(struct Node_t));
+	second = (struct Node_t*)malloc(sizeof(struct Node_t));
+	third = (struct Node_t*)malloc(sizeof(struct Node_t));
+	fourth = (struct Node_t*)malloc(sizeof(struct Node_t));
 
 	head->data = 1;
 	head->next = second;
@@ -25,6 +25,6 @@ int main(){
 	fourth->data = 4;
 	fourth->next = NULL;
 
-	traverseLinkedList(head);
+	linked_list_traverse(head);
 
 }

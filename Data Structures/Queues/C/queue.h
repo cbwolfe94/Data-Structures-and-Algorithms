@@ -1,11 +1,11 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-typedef struct Node {
+typedef struct {
 	int data;
-	struct Node* next;
-	struct Node* previous;
-} Node;
+	Node_t *next;
+	Node_t *previous;
+} Node_t;
 
 void queue();
 
@@ -13,6 +13,6 @@ void dequeue();
 
 void peek();
 
-void displayQueue();
+void queue_display();
 
 #endif
